@@ -1,0 +1,16 @@
+# Ignore all files
+*
+
+# Except source code files
+!*.cs
+!*.csproj
+!*.sln
+!*.config
+!*.json
+
+# Allow directories to be tracked
+!*/
+
+# Ignore build and output directories
+bin/
+obj/
