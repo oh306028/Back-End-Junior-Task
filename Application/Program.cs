@@ -48,7 +48,7 @@ namespace Application
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if(response.IsSuccessStatusCode != true)
                 throw new Exception("Cannot get file");
 
             return response;
