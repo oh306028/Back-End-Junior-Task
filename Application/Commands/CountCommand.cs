@@ -11,7 +11,7 @@ namespace Application.Commands
         public void Execute(string[] args, IEnumerable<Participant> participants)
         {
 
-            if(args.Length > 4)
+            if (args.Length > 4)
                 throw new ArgumentException("Invalid command");
 
             if (args.Length < 3)
@@ -22,23 +22,25 @@ namespace Application.Commands
 
 
             var commandFilter = args[2];
-            string greaterThan = "--age-gt";
-            string lessThan = "--age-lt";
-          
-        
+            const string greaterThan = "--age-gt";
+            const string lessThan = "--age-lt";
+
+
 
             if (!commandFilter.Equals(greaterThan) && !commandFilter.Equals(lessThan))
                 throw new ArgumentException("Invalid command");
 
-           
 
-            int age = int.Parse(args[3]);
+            if (!int.TryParse(args[3], out int age))
+                throw new ArgumentException("Invalid command");
 
-            if(commandFilter == greaterThan)
+
+            if (commandFilter == greaterThan)
             {
                 Console.WriteLine(participants.Where(x => x.Age > age).Count());
 
-            }else
+            }
+            else
             {
                 Console.WriteLine(participants.Where(x => x.Age < age).Count());
 
